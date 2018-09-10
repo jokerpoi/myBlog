@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <style type="text/css">
+        a{
+            text-decoration: none;
+            border-color: #5e5e5e;
+        }
+        .glyphicon-user{
+            color: #2aabd2;
+        }
+        .glyphicon-time{
+            color: #3e8f3e;
+        }
+        .glyphicon-comment{
+            color: #c0a16b;
+        }
+        #user{
+            top:50px;
+        }
+        body{
+            background-color: #d9edf7;
+        }
+    </style>
+</head>
+<body>
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
+      <!--integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+
+ <!--可选的 Bootstrap 主题文件（一般不用引入） -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"-->
+        <!--integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/mainPageJs"></script>
+<script src="/js/bootstrap-paginator.js"></script>
+<script src="/js/navJs.js"></script>
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrap.css">
+
+<nav class="navbar navbar-inverse col-md-12" role="navigation">
+    <div class="navbar-header col-md-8">
+        <p><a class="navbar-brand" href="/mainPage/index">首 页</a></p>
+    </div>
+    <div class="col-md-4">
+        <ul class="nav navbar-nav">
+            <li class="navbar-text">你好,</li>
+            <li><a href="/userUtil/userUtil">admin</a></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search">搜索</span></button>
+        </form>
+    </div>
+</nav>
+<div>
+    <div id="blogs" class="col-md-8 col-md-offset-1">
+        <div class="row">
+            <p>最新文章</p>
+            <div style="background-color: #b92c28;height: 5px;" class="col-md-12"></div>
+        </div>
+    </div>
+    <!--</div>-->
+    <!--右侧用户列表-->
+    <div id="user" class="col-md-3">
+        <div class="">
+            <img src="/icons/timg.jpg" class="center-block img-circle" style="width: 200px;height: 200px;">
+            <div class="caption">
+                <h1 class="text-center">Admin</h1>
+                <p class="text-center">介绍</p>
+            </div>
+        </div>
+        <div id="labels" class="center-block" role="group">
+            <button class="btn btn-info"><a href="#">标签</a><span class="badge">4</span></button>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <ul id="pages" class="pagination">
+        <li>1</li>
+        <li>2</li>
+    </ul>
+</div>
+</body>
+</html>

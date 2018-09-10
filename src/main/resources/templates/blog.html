@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="window-title"></title>
+</head>
+<body>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<script src="/js/navJs.js"></script>
+<script src="/js/bolgJs.js"></script>
+
+<!--导航栏-->
+<nav class="navbar navbar-inverse col-md-12" role="navigation">
+    <div class="navbar-header col-md-8">
+        <p><a class="navbar-brand" href="/mainPage/index">首 页</a></p>
+    </div>
+    <div class="col-md-4">
+        <ul class="nav navbar-nav">
+            <li class="navbar-text">你好,</li>
+            <li><a href="/userUtil/userUtil">admin</a></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search">搜索</span></button>
+        </form>
+    </div>
+</nav>
+<div class="col-md-8 col-md-offset-1">
+    <div class="row">
+        <h1 id="title" class="col-md-12"></h1>
+        <label id="author" class="col-md-2"><span class="glyphicon glyphicon-user"></span></label>
+        <label id="createTime" class="col-md-4"><span class="glyphicon glyphicon-time">创建时间:</span></label>
+        <label id="modifiedTime" class="col-md-4"><span class="glyphicon glyphicon-time">更新时间:</span></label>
+        <label id="hits"><span class="glyphicon glyphicon-eye-open">浏览量:</span></label>
+        <div style="background-color: #b92c28;height: 2px;" class="col-md-12"></div>
+        <div id="pragh" style="height: 600px;"></div>
+        <div style="background-color: #b92c28;height: 2px;" class="col-md-12"></div>
+
+        <div class="col-md-12">
+            <label class="col-md-8 col-md-offset-2">发布评论</label>
+            <textarea id="comment" class="col-md-8 col-md-offset-2" style="height: 100px; 	border-collapse: separate;
+	            border: 1px solid rgb(204, 204, 204); " minlength="8"></textarea>
+            <button class="col-md-2 col-md-offset-8 btn btn-primary" onclick="" type="submit">提交</button>
+        </div>
+        <div id="commentList">
+            <p class="col-md-12">评论</p>
+            <div style="background-color: #5e5e5e;height: 1px;" class="col-md-12"></div>
+            <label id="commentLou">1楼</label>
+            <label id="commentUser">Admin</label>
+            <label id="commentCreateTime">2018-10-...</label>
+            <p style="height: 100px" class="col-md-12">wwwwwwwww</p>
+            <a class="col-md-1 col-md-offset-8" href="#">回复</a>
+            <div style="background-color: #5e5e5e;height: 1px;" class="col-md-12"></div>
+        </div>
+    </div>
+</div>
+<!--右侧用户列表-->
+<div id="user" class="col-md-3">
+    <div class="">
+        <img src="/icons/timg.jpg" class="center-block img-circle" style="width: 200px;height: 200px;">
+        <div class="caption">
+            <h1 class="text-center">Admin</h1>
+            <p class="text-center">介绍</p>
+        </div>
+    </div>
+    <div id="labels" class="center-block" role="group">
+        <button class="btn btn-info"><a href="#">标签</a><span class="badge">4</span></button>
+    </div>
+</div>
+</body>
+</html>

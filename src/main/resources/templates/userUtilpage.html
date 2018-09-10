@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <style type="text/css">
+        html,body{
+            height: 100%;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="/js/bootstrap-table.min.css">
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="/js/bootstrap-table.min.js"></script>
+
+<!-- Latest compiled and minified Locales -->
+<script src="/js/bootstrap-table-zh-CN.min.js"></script>
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<script src="/js/navJs.js"></script>
+<script src="/js/userUtilPageJs.js"></script>
+
+<!--导航栏-->
+<nav class="navbar navbar-inverse" style="margin-bottom: 0px;" role="navigation">
+    <div class="navbar-header col-md-8">
+        <p><a class="navbar-brand" href="/mainPage/index">首 页</a></p>
+    </div>
+    <div class="col-md-4">
+        <ul class="nav navbar-nav">
+            <li class="navbar-text">你好,</li>
+            <li class="navbar-text" href="#">admin</li>
+        </ul>
+        <form class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search">搜索</span></button>
+        </form>
+    </div>
+</nav>
+
+<div class="col-md-2" style="padding-left: 0px;height: 100%;background-color: #222;border-color: #080808">
+    <ul class="nav nav-list navbar-inverse">
+        <li><a href="#">密码 修改</a></li>
+        <li><a href="#">Setting</a></li>
+        <li><a href="#">博客状态查询</a></li>
+        <li><a href="/userUtil/addBlogPage">新建Blog</a></li>
+    </ul>
+</div>
+<div class="col-md-8 col-md-offset-1">
+    <div class="row">
+        <ul class="breadcrumb">
+            <li>用户管理</li>
+            <li>博客状态查询</li>
+        </ul>
+    </div>
+    <div class="row">
+        <table id="blogTable"></table>
+    </div>
+</div>
+</body>
+</html>

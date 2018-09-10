@@ -1,0 +1,148 @@
+
+//页面初始化
+$(document).ready(function () {
+    initContentsPage(1);
+    // initPageDom();
+});
+
+function initPageDom() {
+    var element = $("#pages");
+    var options = {
+        bootstrapMajorVersion:3,
+        currentPage: 1,
+        numberOfPages: 5,
+        totalPages: 10,
+        pageUrl:function (type,page,current) {
+            return "#" + page;
+        },
+        shouldShowPage:function (type,page,current) {
+            switch (type){
+                case "frist":
+                case "last":
+                    return false;
+                default:true;
+            }
+        },
+        tooltipTitles:function (type,page,current) {
+            switch (type){
+                case "frist":
+                    return "提示首页";
+                case "prev":
+                    return "提示上一页";
+            }
+        },
+        useBootstrapTooltips:true,
+        onPageClicked:function (e,originalEvent,type,page) {
+            
+        },
+        onPageChanged:function (e,oldPage,newPage) {
+            
+        }
+    };
+    element.bootstrapPaginator(options);
+}
+
+function initContentsPage(page) {
+
+    $.ajax({
+        type: "GET",
+        dataType:"JSON",
+        url: "/mainPage/findContentsInPage/" + page,
+        success:function (data) {
+            getUrlData(data)
+        }});
+
+}
+
+function getUrlData(data) {
+    var fatherDiv = document.getElementById("blogs");
+    var length = data.length;
+    for(var i=0;i<length;i++){
+        createDom(fatherDiv,data[i]);
+    }
+}
+
+//创建段落
+function createDom(div,data) {
+    //用户
+    var labAdmin = document.createElement("label");
+    labAdmin.setAttribute("class","col-md-2");
+    var up = document.createElement("span");
+    up.setAttribute("class","glyphicon glyphicon-user");
+    up.appendChild(document.createTextNode(getAuthorById(data.authorId)));
+    labAdmin.appendChild(up);
+
+    //更新时间
+    var labTime = document.createElement("label");
+    labTime.setAttribute("class","col-md-4");
+    var down = document.createElement("span");
+    down.setAttribute("class","glyphicon glyphicon-time");
+    var modified = changeDate(data.modified);
+    down.appendChild(document.createTextNode(modified));
+    labTime.appendChild(down);
+
+    //评论
+    var btnComment = document.createElement("label");
+    btnComment.setAttribute("class","col-md-2 col-md-offset-2");
+    var comment = document.createElement("span");
+    comment.setAttribute("class","glyphicon glyphicon-comment");
+    comment.appendChild(document.createTextNode("评论"));
+    var badgeComment = document.createElement("span");
+    badgeComment.setAttribute("class","badge");
+    badgeComment.appendChild(document.createTextNode(data.commentsNum));
+    btnComment.appendChild(comment);
+    btnComment.appendChild(badgeComment);
+
+    //点击量
+    var hits = document.createElement("label");
+    var hitSpan = document.createElement("span");
+    hitSpan.setAttribute("class","glyphicon glyphicon-eye-open");
+    hitSpan.appendChild(document.createTextNode("浏览量"));
+    var hitNums = document.createElement("span");
+    hitNums.setAttribute("class","badge");
+    hitNums.appendChild(document.createTextNode(data.hits));
+    hits.appendChild(hitSpan);
+    hits.appendChild(hitNums);
+
+
+    var nav = document.createElement("nav");
+    nav.appendChild(labAdmin);
+    nav.appendChild(labTime);
+    nav.appendChild(btnComment);
+    nav.appendChild(hits);
+
+    var h1 = document.createElement("h1");
+    var a = document.createElement("a");
+    a.setAttribute("href","/mainPage/blog/"+data.cid);
+    a.appendChild(document.createTextNode(data.title));
+    h1.appendChild(a);
+    var p = document.createElement("div");
+    p.setAttribute("style","height:150px");
+    // p.append(data.contents);
+    var str = delHtmlTag(data.contents);
+    p.append(str);
+
+    var div1 = document.createElement("div");
+    div1.appendChild(h1);
+    div1.appendChild(p);
+    div1.appendChild(nav);
+
+    //分割线
+    var divier = document.createElement("div");
+    divier.setAttribute("style","height: 2px;background-color: #8a6d3b");
+
+    var divRow = document.createElement("div");
+    divRow.setAttribute("class","row");
+    divRow.appendChild(div1);
+    divRow.appendChild(divier);
+
+    div.appendChild(divRow);
+}
+
+function delHtmlTag(str){
+    var title = str.replace(/<[^>]+>/g,"");//去掉所有的html标记
+    if(title.length > 300) {
+        title = title.substring(0,300);
+    }
+    return title;
+}

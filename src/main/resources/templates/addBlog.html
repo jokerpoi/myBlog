@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新建Blog</title>
+    <style type="text/css">
+        /*#editor{*/
+            /*overflow: scroll;*/
+            /*max-height: 600px;*/
+        /*}*/
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/navJs.js"></script>
+
+<script src="/js/ueditor.config.js" type="text/javascript"></script>
+<script src="/js/ueditor.all.js" type="text/javascript"></script>
+<script src="/js/addBlogJs.js"></script>
+
+<!--导航栏-->
+<nav class="navbar navbar-inverse col-md-12" role="navigation">
+    <div class="navbar-header col-md-8">
+        <p><a class="navbar-brand" href="/mainPage/index">首 页</a></p>
+    </div>
+    <div class="col-md-4">
+        <ul class="nav navbar-nav">
+            <li class="navbar-text">你好,</li>
+            <li><a href="/userUtil/userUtil">admin</a></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search">搜索</span></button>
+        </form>
+    </div>
+</nav>
+
+<div class="col-xs-10 col-md-offset-1">
+    <div class="row">
+        <ul class="breadcrumb col-md-8">
+            <li>用户管理</li>
+            <li>博客状态查询</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="commitContent()">提交</button>
+            <a class="btn btn-default" href="/userUtil/userUtil">返回</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div style="margin-top:50px" class="input-group input-group-lg">
+                <span class="input-group-addon"></span>
+                <input id="titleText" type="text" placeholder="标题" name="title" class="form-control">
+            </div>
+            <div style="margin-top: 20px;">
+                <script id="editor" type="text/plain" name="content"></script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
