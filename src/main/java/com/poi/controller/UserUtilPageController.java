@@ -88,4 +88,21 @@ public class UserUtilPageController {
             return blog;
         }
     }
+
+    @RequestMapping(value = "/changeAllowComment/{id}")
+    public void changeAllowComment(@PathVariable(value = "id") int id){
+        logger.info("changeAllowComment+ID: "+id);
+        Contents blog = contentService.findContentById(id);
+        int allowFlag = blog.getAllowComment();
+        allowFlag = (allowFlag == 0)?1:0;
+        blog.setAllowComment(allowFlag);
+        logger.info("allowCommentFlag="+allowFlag);
+        contentService.updateContents(blog);
+    }
+
+    @RequestMapping(value = "/settingPage")
+    public String seettingPage(){
+        logger.info("settingPage");
+        return "settingPage";
+    }
 }

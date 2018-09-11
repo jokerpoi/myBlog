@@ -123,5 +123,12 @@ function clickSubAdmin(index) {
 
 //允许评论点击事件
 function allowCommentBtn(index) {
-    alert(index);
+    $.ajax({
+        url: "/userUtil/changeAllowComment/"+index,
+        type: "post",
+        async: false,
+        error: function (data) {
+            alert("ERROR!!");
+        }
+    })
 }
