@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Setting</title>
     <style type="text/css">
-        a{
+        html,body {
+            height: 100%;
+        }
+        a {
             text-decoration: none;
             border-color: #5e5e5e;
-        }
-        html,body{
-            height: 100%;
         }
     </style>
 
@@ -27,6 +27,7 @@
 
     <script src="/js/navJs.js"></script>
     <script src="/js/settingJs.js"></script>
+    <script src="/js/checkUserJs.js"></script>
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
@@ -66,39 +67,76 @@
         </ul>
     </div>
 </div>
-<div class="col-md-4 col-md-offset-3">
-    <div class="row">
+<div class="col-md-6 col-md-offset-3">
+    <div class="row" style="height: 100px;">
         <label>Your Name:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">名称：</span>
-                    <input class="form-control" type="text" placeholder="Username" id="user-name-label">
-                </div>
-        <label>Your Password:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">密码：</span>
-                    <input class="form-control" type="password" placeholder="Password" id="password-label">
-                    <span id="password-span" class="glyphicon glyphicon-eye-close input-group-addon" onclick="passwordEyeClick()"></span>
-                </div>
-        <label>Your Password Confirm:</label>
-        <div class="input-group">
-            <span class="input-group-addon">确认密码：</span>
-            <input class="form-control" type="password" placeholder="Password" id="password-label2">
-            <span id="password-span2" class="glyphicon glyphicon-eye-close input-group-addon" onclick="passwordEyeClick()"></span>
+        <div class="form-inline">
+            <div class="input-group col-md-8">
+                <span class="input-group-addon" style="width: 100px">名称：</span>
+                <input class="form-control" type="text" placeholder="Username" id="user-name-label" oninput="onInputCheck(this)">
+            </div>
+            <div  class="col-sm-4" style="float: right;text-align: center">
+                <li id="user-name-info" style="color: #b92c28; display: none">请输入4-10位的字母或数字，必须以字母开始</li>
+            </div>
         </div>
+    </div>
+    <div class="row" style="height: 100px;">
+        <label>Your Password:</label>
+        <div class="form-inline">
+            <div class="input-group col-md-8">
+                <span class="input-group-addon" style="width: 100px;">密码：</span>
+                <input class="form-control" type="password" placeholder="Password" id="password-label" oninput="onInputCheck(this)">
+                <span id="password-span" class="glyphicon glyphicon-eye-close input-group-addon"
+                      onclick="passwordEyeClick()"></span>
+            </div>
+            <div class="col-md-4" style="float: right">
+                <ul style="display: none" id="password-ul">
+                    <li id="password-size-info" style="color: #b92c28">密码长度为8-16位</li>
+                    <li id="password-type-info" style="color: #3e8f3e">包含数字、符号(~!@#$%^&*?)、大小写至少两种</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="height: 100px;">
+        <label>Your Password Confirm:</label>
+        <div class="form-inline">
+            <div class="input-group col-md-8">
+                <span class="input-group-addon" style="width: 100px;">确认密码：</span>
+                <input class="form-control" type="password" placeholder="Password" id="password-label2" oninput="onInputCheck(this)">
+                <span id="password-span2" class="glyphicon glyphicon-eye-close input-group-addon"
+                      onclick="passwordEyeClick()"></span>
+            </div>
+            <div class="col-sm-4" style="text-align: center;float: right;">
+                <li id="re-password-info" style="color: #b92c28;display: none">两次输入的密码不一致</li>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="height: 100px;">
         <label>Your Email:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">Email：</span>
-                    <input class="form-control" type="email" placeholder="Email" id="email-label">
-                </div>
+        <div class="form-inline">
+            <div class="input-group col-md-8">
+                <span class="input-group-addon" style="width: 100px;">Email：</span>
+                <input class="form-control" type="email" placeholder="Email" id="email-label" oninput="onInputCheck(this)">
+            </div>
+            <div style="float: right;text-align: center" class="col-md-4">
+                <li id="email-info" style="color: #b92c28;display: none;" >请输入正确的Email地址</li>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="height: 100px;">
         <label>Your Account Create Date:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">创建日期：</span>
-                    <input class="form-control" type="date" id="user-create-label" readonly="readonly">
-                </div>
+        <div class="form-inline">
+            <div class="input-group col-sm-8">
+                <span class="input-group-addon" style="width: 100px;">创建日期：</span>
+                <input class="form-control" type="date" id="user-create-label" readonly="readonly">
+            </div>
+        </div>
     </div>
     <div class="row">
-        <button class="btn btn-primary">修改</button>
+        <button class="btn btn-primary" onclick="submitChangeUser()">修改</button>
     </div>
+</div>
 </div>
 
 

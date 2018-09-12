@@ -1,10 +1,7 @@
 
-var eyeFlag = false;
 
 $(function () {
     initUserValue();
-
-    $("#password-label").focus(onInputCheck(this));
 
 });
 
@@ -13,34 +10,19 @@ function initUserValue() {
 
 }
 
-function passwordEyeClick(index) {
-    // event.stopPropagation();
-    if(eyeFlag==false){
-        $("#password-label").attr("type","text");
-        $("#password-span").attr("class","glyphicon glyphicon-eye-open input-group-addon");
-        $("#password-label2").attr("type","text");
-        $("#password-span2").attr("class","glyphicon glyphicon-eye-open input-group-addon");
-        eyeFlag = true;
-    }else {
-        $("#password-label").attr("type","password");
-        $("#password-span").removeClass("glyphicon glyphicon-eye-open");
-        $("#password-span").addClass("glyphicon glyphicon-eye-close");
-        $("#password-label2").attr("type","password");
-        $("#password-span2").removeClass("glyphicon glyphicon-eye-open");
-        $("#password-span2").addClass("glyphicon glyphicon-eye-close");
-        eyeFlag = false;
+function submitChangeUser() {
+    var userVal = $("#user-name-label").val();
+    var passwordVal = $("#password-label").val();
+    var rePasswordVal = $("#password-label2").val();
+    var emailVal = $("#email-label").val();
+    if(checkUsername(userVal) && checkPasswordInput(passwordVal) && checkRePassword(rePasswordVal) && checkEmail(emailVal)){
+        $.ajax({
+            url:"/userPage/addUser?username="+userVal+"&password="+passwordVal+"&email="+emailVal,
+            async:false
+        });
+    }else{
+        alert("信息错误");
     }
 }
 
-function onInputCheck(onEvent) {
-       onEvent.css({
-           "border-color":"#b92c28"
-       });
-}
 
-//验证密码输入
-function checkPasswordInput() {
-    var flag = false;
-
-    return flag;
-}

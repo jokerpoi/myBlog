@@ -47,6 +47,8 @@ public class UserService {
     }
 
     public void updateUser(User u){
+        User user = userJpa.getOne(u.getUid());
+        u.setCreated(user.getCreated());
         userJpa.save(u);
     }
 
