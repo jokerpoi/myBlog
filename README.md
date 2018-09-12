@@ -1,2 +1,2 @@
 # myBlog
-springboot 学习个人博客设计项目
+springboot 个人博客设计项目
