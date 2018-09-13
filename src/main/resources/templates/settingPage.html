@@ -41,7 +41,7 @@
     <div class="col-md-4">
         <ul class="nav navbar-nav">
             <li class="navbar-text">你好,</li>
-            <li><a href="/userUtil/userUtil">admin</a></li>
+            <li><a href="/userUtil/userUtil" id="admin">admin</a></li>
         </ul>
         <form class="navbar-form navbar-right">
             <div class="form-group">
@@ -55,7 +55,7 @@
     <ul class="nav nav-list navbar-inverse">
         <li><a href="#">密码 修改</a></li>
         <li><a href="/userUtil/settingPage">Setting</a></li>
-        <li><a href="#">博客状态查询</a></li>
+        <li><a href="/userUtil/userUtil">博客状态查询</a></li>
         <li><a href="/userUtil/addBlogPage">新建Blog</a></li>
     </ul>
 </div>
@@ -77,6 +77,7 @@
             </div>
             <div  class="col-sm-4" style="float: right;text-align: center">
                 <li id="user-name-info" style="color: #b92c28; display: none">请输入4-10位的字母或数字，必须以字母开始</li>
+                <li id="user-name-repeat" style="display: none;color: #b92c28;">该名称已注册</li>
             </div>
         </div>
     </div>
@@ -117,7 +118,7 @@
         <div class="form-inline">
             <div class="input-group col-md-8">
                 <span class="input-group-addon" style="width: 100px;">Email：</span>
-                <input class="form-control" type="email" placeholder="Email" id="email-label" oninput="onInputCheck(this)">
+                <input class="form-control" type="text" placeholder="Email" id="email-label" oninput="onInputCheck(this)">
             </div>
             <div style="float: right;text-align: center" class="col-md-4">
                 <li id="email-info" style="color: #b92c28;display: none;" >请输入正确的Email地址</li>
@@ -129,7 +130,7 @@
         <div class="form-inline">
             <div class="input-group col-sm-8">
                 <span class="input-group-addon" style="width: 100px;">创建日期：</span>
-                <input class="form-control" type="date" id="user-create-label" readonly="readonly">
+                <label class="form-control" type="text" id="user-create-label" ></label>
             </div>
         </div>
     </div>

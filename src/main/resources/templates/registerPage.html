@@ -32,6 +32,7 @@
                 </div>
                 <div  class="col-sm-4" style="float: right;text-align: center">
                     <li id="user-name-info" style="color: #b92c28; display: none">请输入4-10位的字母或数字，必须以字母开始</li>
+                    <li id="user-name-repeat" style="display: none;color: #b92c28;">该名称已注册</li>
                 </div>
             </div>
         </div>
@@ -72,7 +73,7 @@
             <div class="form-inline">
                 <div class="input-group col-md-8">
                     <span class="input-group-addon" style="width: 100px;">Email：</span>
-                    <input class="form-control" type="email" placeholder="Email" id="email-label" oninput="onInputCheck(this)">
+                    <input class="form-control" type="text" placeholder="Email" id="email-label" oninput="onInputCheck(this)">
                 </div>
                 <div style="float: right;text-align: center" class="col-md-4">
                     <li id="email-info" style="color: #b92c28;display: none;" >请输入正确的Email地址</li>
@@ -81,7 +82,7 @@
         </div>
 
         <div class="row">
-            <button class="btn btn-primary col-md-offset-2" onclick="">注册</button>
+            <button class="btn btn-primary col-md-offset-2" onclick="registerUser()">注册</button>
             <a class="btn btn-default col-md-offset-2" href="/userPage/loginPage">取消</a>
         </div>
     </div>

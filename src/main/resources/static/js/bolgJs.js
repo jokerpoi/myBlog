@@ -39,10 +39,12 @@ var commentList = $("#commentList");
         var commentFlag = contents.allowComment;
         if(commentFlag == "1"){
             initCommentList();
+        }else{
+            $("#comment").attr("disabled","disabled");
         }
     }
 
     
     function initCommentList() {
-
+        $("#comment").removeAttribute("disabled");
     }

@@ -7,7 +7,18 @@ $(function () {
 
 //初始化用户数据
 function initUserValue() {
-
+    $.ajax({
+        url: "/userPage/getSessionUser",
+        async: false,
+        success: function (data) {
+            $("#user-name-label").val(data.username);
+            $("#password-label").val(data.password);
+            $("#password-label2").val(data.password);
+            $("#email-label").val(data.email);
+            var createTime = data.created;
+            $("#user-create-label").html(changeDate(createTime));
+        }
+    })
 }
 
 function submitChangeUser() {
@@ -17,8 +28,11 @@ function submitChangeUser() {
     var emailVal = $("#email-label").val();
     if(checkUsername(userVal) && checkPasswordInput(passwordVal) && checkRePassword(rePasswordVal) && checkEmail(emailVal)){
         $.ajax({
-            url:"/userPage/addUser?username="+userVal+"&password="+passwordVal+"&email="+emailVal,
-            async:false
+            url:"/userPage/updateUser?username="+userVal+"&password="+passwordVal+"&email="+emailVal,
+            async:false,
+            success: function (data) {
+                alert("修改成功！");
+            }
         });
     }else{
         alert("信息错误");

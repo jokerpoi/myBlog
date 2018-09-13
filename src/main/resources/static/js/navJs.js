@@ -2,6 +2,10 @@
  * 导航栏js
  */
 
+$(function () {
+    initNavAdmin();
+});
+
 function getAuthorById(id) {
     var author;
     $.ajax({
@@ -22,9 +26,15 @@ function changeDate(date) {
     return modified;
 }
 
-function changeAllowCommentStatus(index) {
+function initNavAdmin() {
+    var user;
     $.ajax({
-        url:"",
-        async: false
-    });
+        url: "/userPage/getSessionUser",
+        async: false,
+        success: function (data) {
+            $("#admin").html(data.username);
+            user = data;
+        }
+    })
+    return user;
 }

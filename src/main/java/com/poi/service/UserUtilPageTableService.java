@@ -47,7 +47,11 @@ public class UserUtilPageTableService {
         }
         if(contents.getAuthorId() != 0){
             User user = userService.getUserById(contents.getAuthorId());
-            userUtilPageTable.setAuthor(user.getUsername());
+            if(null == user){
+                userUtilPageTable.setAuthor("");
+            }else{
+                userUtilPageTable.setAuthor(user.getUsername());
+            }
         }
         if(null != contents.getUrl() && !contents.getUrl().isEmpty()){
             userUtilPageTable.setUrl(contents.getUrl());

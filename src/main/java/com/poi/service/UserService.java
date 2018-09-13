@@ -52,6 +52,15 @@ public class UserService {
         userJpa.save(u);
     }
 
+    public User findUserByName(String username){
+        User user = new User();
+        user.setUsername(username);
+        if(null != username && !username.isEmpty()){
+            user = userJpa.findByUsername(username);
+        }
+        return user;
+    }
+
     public void removeUser(int id){
         userJpa.deleteById(id);
     }

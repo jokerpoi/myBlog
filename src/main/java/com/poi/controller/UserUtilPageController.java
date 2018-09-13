@@ -89,6 +89,7 @@ public class UserUtilPageController {
         }
     }
 
+    @ResponseBody
     @RequestMapping(value = "/changeAllowComment/{id}")
     public void changeAllowComment(@PathVariable(value = "id") int id){
         logger.info("changeAllowComment+ID: "+id);

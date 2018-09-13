@@ -43,7 +43,7 @@ function onInputCheck(onEvent) {
 //验证用户名
 function checkUsername(val) {
     var flag = true;
-    var req = /^[a-zA-Z][0-9a-zA-Z]{4,10}/;
+    var req = /^[a-zA-Z][0-9a-zA-Z]{3,9}/;
     if(req.test(val)){
         $("#user-name-info").css("color","#3e8f3e");
     }else{
@@ -51,6 +51,26 @@ function checkUsername(val) {
         $("#user-name-info").css("color","#b92c28");
         flag = false;
     }
+    var localName = $("#admin").html();
+    if(val == localName){
+        return flag;
+    }
+    $.ajax({
+        url: "/userPage//findUserByName/"+val,
+        async: false,
+        error: function (data) {
+            flag = false;
+        },
+        success: function (data) {
+            if(data != null && data != "" && data.cid != 0){
+                flag = false;
+                $("#user-name-repeat").css("color","#b92c28");
+                $("#user-name-repeat").css("display","block");
+            }else{
+                $("#user-name-repeat").css("display","none");
+            }
+        }
+    });
     return flag;
 }
 

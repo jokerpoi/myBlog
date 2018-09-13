@@ -41,11 +41,7 @@ function initContent(data) {
 function commitContent() {
     var titleStr = $("#titleText").val();
     var contentText = ue.getContent();
-    var clearData = {
-        title: titleStr,
-        contents: contentText
-    };
-    var JsonData = JSON.stringify(clearData);
+    var localUser = initNavAdmin().uid;
     if(!updateFlag){
         if (null == titleStr || "" == titleStr) {
             alert("标题为空！！");
@@ -57,7 +53,7 @@ function commitContent() {
 
             }else{
                 $.ajax({
-                    url: "/userUtil/addBlog?title="+titleStr+"&contents="+contentText+"&authorId="+1,
+                    url: "/userUtil/addBlog?title="+titleStr+"&contents="+contentText+"&authorId="+localUser,
                     type: "post",
                     async:false,
                     error: function (data,msg) {

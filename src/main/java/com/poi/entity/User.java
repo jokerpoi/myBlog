@@ -17,7 +17,7 @@ public class User extends BaseEntity{
     private String password;
     @Column(name = "email")
     private String email;
-    @Column(name = "create")
+    @Column(name = "u_create")
     private Timestamp created;//创建时间
 
     public int getUid() {

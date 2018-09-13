@@ -11,6 +11,12 @@
         a{
             text-decoration: none;
         }
+        #floatBox{
+            background: #FFFFFF;
+            margin-top: 5%;
+            box-shadow: 0 0 10px #5e5e5e;
+            border-radius: 30px;
+        }
     </style>
 
     <script src="/js/jquery-3.3.1.min.js"></script>
@@ -21,9 +27,9 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
 </head>
-<body style="background: #9d9d9d;">
+<body style="background: #d9d9d9;">
 
-<div class="col-md-4 col-md-offset-4" style="background: #FFFFFF;margin-top: 5%;">
+<div id="floatBox" class="col-md-4 col-md-offset-4">
     <div class="container col-md-10 col-md-offset-1">
         <div class="row center-block">
             <h1 style="margin-bottom: 20px;">登  录</h1>
@@ -33,7 +39,7 @@
                 <label>Your Name: </label>
                 <div class="input-group col-md-12">
                     <span class="input-group-addon" style="width: 100px;">名称:</span>
-                    <input class="form-control" type="text" placeholder="Username">
+                    <input class="form-control" type="text" placeholder="Username" id="user-val">
                 </div>
             </div>
         </div>
@@ -42,7 +48,7 @@
                 <label>Your Password: </label>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 100px;">密码:</span>
-                    <input class="form-control" type="password" placeholder="Password" id="password-label">
+                    <input class="form-control" type="password" placeholder="Password" id="password-val">
                     <span id="password-span" class="glyphicon glyphicon-eye-close input-group-addon"
                           onclick="passwordEyeClick()"></span>
                 </div>
@@ -52,8 +58,9 @@
             <a href="#" class="col-md-offset-2">忘记密码？</a>
             <a href="/userPage/registerPage" class="col-md-offset-2">注 册</a>
         </div>
+        <label style="color: #b92c28;display: none;" id="error-info">jjjjjjjj</label>
         <div class="row" style="margin-top: 20px; margin-bottom: 50px;">
-            <button class="btn btn-primary col-md-offset-2" onclick="">登录</button>
+            <button class="btn btn-primary col-md-offset-2" onclick="clickLoginBtn()">登录</button>
             <button class="btn btn-default col-md-offset-2">取消</button>
         </div>
     </div>

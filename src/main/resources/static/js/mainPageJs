@@ -117,10 +117,10 @@ function createDom(div,data) {
     a.appendChild(document.createTextNode(data.title));
     h1.appendChild(a);
     var p = document.createElement("div");
-    p.setAttribute("style","height:150px");
-    // p.append(data.contents);
-    var str = delHtmlTag(data.contents);
-    p.append(str);
+    p.setAttribute("style","height:150px;text-overflow:ellipsis;overflow:hidden;");
+    p.innerHTML = data.contents;
+    // var str = delHtmlTag(data.contents);
+    // p.append(str);
 
     var div1 = document.createElement("div");
     div1.appendChild(h1);
