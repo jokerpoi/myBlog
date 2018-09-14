@@ -39,6 +39,21 @@ public class UserUtilPageTableService {
         return dataGrid;
     }
 
+    public DataGrid fintListByUserIdInPage(int limit,int offset,int authorId){
+        DataGrid<UserUtilPageTable> dataGrid = new DataGrid<>();
+        List<Contents> contentsAll = contentService.findAllByUserId(authorId);
+        List<Contents> contents = contentService.findAllByUserIdInPage(authorId,offset,limit);
+
+        List<UserUtilPageTable> pageTableList = new ArrayList<>();
+        for (Contents cont:contents) {
+            UserUtilPageTable page = changeContentToUserUtilPage(cont);
+            pageTableList.add(page);
+        }
+        dataGrid.setTotal(contentsAll.size());
+        dataGrid.setRows(pageTableList);
+        return dataGrid;
+    }
+
     public UserUtilPageTable changeContentToUserUtilPage(Contents contents){
         UserUtilPageTable userUtilPageTable = new UserUtilPageTable();
         userUtilPageTable.setCId(contents.getCId());

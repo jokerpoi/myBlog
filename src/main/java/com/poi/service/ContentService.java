@@ -20,6 +20,20 @@ public class ContentService {
         return contentJpa.findAll();
     }
 
+    public List<Contents> findAllByUserId(int authorId){
+        return contentJpa.findAllByUserId(authorId);
+    }
+
+    public List<Contents> findAllByUserIdInPage(int authorId,int page,int pageSize){
+        Contents contents = new Contents();
+        contents.setPage(page);
+        contents.setPageSize(pageSize);
+        contents.setSidx("modified");
+        contents.setSord("desc");
+
+        return contentJpa.findAllByAuthorIdOnPage(authorId,contents.getSidx(),contents.getSord(),page,pageSize);
+    }
+
     public List<Contents> findAllByPage(int page){
         Contents contents = new Contents();
         contents.setPage(page);

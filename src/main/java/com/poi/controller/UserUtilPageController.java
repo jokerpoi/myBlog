@@ -2,6 +2,7 @@ package com.poi.controller;
 
 import com.poi.entity.Contents;
 import com.poi.entity.DataGrid;
+import com.poi.entity.User;
 import com.poi.service.ContentService;
 import com.poi.service.UserService;
 import com.poi.service.UserUtilPageTableService;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/userUtil")
@@ -52,9 +55,14 @@ public class UserUtilPageController {
 
     @ResponseBody
     @RequestMapping(value = "/findUserUtilPage")
-    public DataGrid findUserUtilPage(int limit,int offset){
+    public DataGrid findUserUtilPage(int limit, int offset, HttpServletRequest request){
         logger.info("进入findUserUtilPage");
-        return userUtilPageTableService.findListCommentPage(limit, offset);
+        User user = (User) request.getSession().getAttribute("user");
+        if(null != user){
+            return userUtilPageTableService.fintListByUserIdInPage(limit,offset,user.getUid());
+        }else {
+            return new DataGrid();
+        }
     }
 
     @ResponseBody

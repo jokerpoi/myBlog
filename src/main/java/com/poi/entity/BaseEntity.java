@@ -5,7 +5,7 @@ import java.util.List;
 public class BaseEntity {
 
     protected int page = 1;
-    protected int pageSize = 5;
+    protected int pageSize = 1;
     protected String sidx = "id";
     protected String sord = "desc";
 
