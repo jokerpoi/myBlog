@@ -1,8 +1,7 @@
 package com.poi.controller;
 
-import com.poi.entity.Contents;
-import com.poi.entity.DataGrid;
-import com.poi.entity.User;
+import com.poi.entity.*;
+import com.poi.service.CommentService;
 import com.poi.service.ContentService;
 import com.poi.service.UserService;
 import com.poi.service.UserUtilPageTableService;
@@ -16,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
+import java.util.List;
 
 @Controller
 @RequestMapping("/userUtil")
@@ -27,6 +28,8 @@ public class UserUtilPageController {
     private UserService userService;
     @Autowired
     private UserUtilPageTableService userUtilPageTableService;
+    @Autowired
+    private CommentService commentService;
 
     @RequestMapping(value = "/userUtil")
     public String userUtilPage(){
@@ -113,5 +116,44 @@ public class UserUtilPageController {
     public String seettingPage(){
         logger.info("settingPage");
         return "settingPage";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/addComments")
+    public Comments addNewComments(Comments comments,HttpServletRequest request){
+        logger.info("tian jia ping lun,Comments: "+ comments.toString());
+        User user = (User)request.getSession().getAttribute("user");
+        if(user == null){
+            return new Comments();
+        }
+        logger.info("User: " + user.toString());
+        comments.setAuthorId(user.getUid());
+        comments.setTotal(commentService.findListCommentsByBlogId(comments.getBlogId()).size()+1);
+        Comments result = commentService.addNewComments(comments);
+        logger.info("result: " + result.getCmId());
+        return result;
+//        return new Comments();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/showCommentsPage")
+    public DataGrid<CommentsPage> showPageComments(Comments comments,int limit,int offset){
+        logger.info("显示评论列表: "+comments.toString()+"\n limit: "+limit + " offset : "+offset);
+        DataGrid<CommentsPage> dataGrid = new DataGrid<>();
+        return dataGrid;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/findListByBlogId/{blogId}")
+    public List<CommentsPage> findListByBlogId(@PathVariable(value = "blogId") int blogId){
+        logger.info("findListByBlogId: blogId : " + blogId);
+        return commentService.findListCommentsByBlogId(blogId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/findListByFatherId/{fatherId}")
+    public List<CommentsPage> findListByFatherId(@PathVariable(value = "fatherId") Integer blogId){
+        logger.info("findListByBlogId: fatherId : " + blogId);
+        return commentService.findListCommentsByFatherId(blogId);
     }
 }
