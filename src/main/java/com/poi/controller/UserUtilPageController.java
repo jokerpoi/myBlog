@@ -52,8 +52,9 @@ public class UserUtilPageController {
     @ResponseBody
     @RequestMapping(value = "/deleteById/{id}")
     public void deleteBlogById(@PathVariable(value = "id")int id){
-        logger.info("删除blog+ID="+id);
+        logger.info("删除blogID= "+id);
         contentService.deleteBlog(id);
+        commentService.removeCommentsByBlogId(id);
     }
 
     @ResponseBody
@@ -128,18 +129,23 @@ public class UserUtilPageController {
         }
         logger.info("User: " + user.toString());
         comments.setAuthorId(user.getUid());
-        comments.setTotal(commentService.findListCommentsByBlogId(comments.getBlogId()).size()+1);
+        int total = commentService.findListCommentsByBlogId(comments.getBlogId()).size()+1;
+        comments.setTotal(total);
         Comments result = commentService.addNewComments(comments);
         logger.info("result: " + result.getCmId());
+        Contents blog = contentService.findContentById(comments.getBlogId());
+        blog.setCommentsNum(total);
+        contentService.updateContents(blog);
         return result;
 //        return new Comments();
     }
 
     @ResponseBody
-    @RequestMapping(value = "/showCommentsPage")
+    @RequestMapping(value = "/showCommentsPageByBlogId")
     public DataGrid<CommentsPage> showPageComments(Comments comments,int limit,int offset){
         logger.info("显示评论列表: "+comments.toString()+"\n limit: "+limit + " offset : "+offset);
         DataGrid<CommentsPage> dataGrid = new DataGrid<>();
+        dataGrid = commentService.findPageByBlogId(comments,offset,limit);
         return dataGrid;
     }
 
@@ -152,8 +158,8 @@ public class UserUtilPageController {
 
     @ResponseBody
     @RequestMapping(value = "/findListByFatherId/{fatherId}")
-    public List<CommentsPage> findListByFatherId(@PathVariable(value = "fatherId") Integer blogId){
-        logger.info("findListByBlogId: fatherId : " + blogId);
+    public List<CommentsPage> findListByFatherId(@PathVariable(value = "fatherId") int blogId){
+        logger.info("findListByFatherId: fatherId : " + blogId);
         return commentService.findListCommentsByFatherId(blogId);
     }
 }

@@ -97,13 +97,13 @@ public class CommentService {
         return result;
     }
 
-    public DataGrid<CommentsPage> findPageByFatherId(Comments comments,int limit,int offset){
+    public DataGrid<CommentsPage> findPageByFatherId(Comments comments,int offset,int limit){
         DataGrid<CommentsPage> dataGrid = new DataGrid<>();
 
         BaseEntity baseEntity = new BaseEntity();
         baseEntity.setPage(offset);
         baseEntity.setPageSize(limit);
-        baseEntity.setSidx("t_create");
+        baseEntity.setSidx("cm_create");
         baseEntity.setSord("asc");
 
         List<CommentsPage> commentsList = findListCommentsByFatherId(comments.getFatherId());
@@ -119,6 +119,34 @@ public class CommentService {
         dataGrid.setRows(resultRows);
 
         return dataGrid;
+    }
+
+    public DataGrid<CommentsPage> findPageByBlogId(Comments comments,int offset,int limit){
+        DataGrid<CommentsPage> dataGrid = new DataGrid<>();
+
+        BaseEntity baseEntity = new BaseEntity();
+        baseEntity.setPage(offset);
+        baseEntity.setPageSize(limit);
+        baseEntity.setSidx("cm_create");
+        baseEntity.setSord("asc");
+
+        List<CommentsPage> commentsList = findListCommentsByBlogId(comments.getBlogId());
+        List<Comments> commentsListOnPage = commentJpa.findListByBlogIdOnPage(comments.getBlogId(),
+                baseEntity.getSidx(),baseEntity.getSord(),offset,limit);
+        List<CommentsPage> resultRows = new ArrayList<>();
+        for(Comments node : commentsListOnPage){
+            CommentsPage commentsPage = changeComments(node);
+            resultRows.add(commentsPage);
+        }
+
+        dataGrid.setTotal(commentsList.size());
+        dataGrid.setRows(resultRows);
+
+        return dataGrid;
+    }
+
+    public boolean removeCommentsByBlogId(int blogId){
+        return commentJpa.removeByBlogId(blogId);
     }
 
 }

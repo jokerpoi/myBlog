@@ -33,6 +33,7 @@ function initNavAdmin() {
         async: false,
         success: function (data) {
             $("#admin").html(data.username);
+            $("#rightAdmin").val(data.username);
             user = data;
         }
     })

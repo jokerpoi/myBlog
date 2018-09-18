@@ -21,7 +21,7 @@
     <div class="col-md-4">
         <ul class="nav navbar-nav">
             <li class="navbar-text">你好,</li>
-            <li><a href="/userUtil/userUtil" id="admin">admin</a></li>
+            <li><a href="/userUtil/userUtil" id="admin"></a></li>
         </ul>
         <form class="navbar-form navbar-right">
             <div class="form-group">
@@ -41,17 +41,26 @@
         <div style="background-color: #b92c28;height: 2px;" class="col-md-12"></div>
         <div id="pragh" style="height: 600px;"></div>
         <div style="background-color: #b92c28;height: 2px;" class="col-md-12"></div>
-
-        <div class="col-md-12">
-            <label class="col-md-8 col-md-offset-2">发布评论</label>
-            <textarea id="comment" class="col-md-8 col-md-offset-2" style="height: 100px; 	border-collapse: separate;
-	            border: 1px solid rgb(204, 204, 204); " minlength="8"></textarea>
-            <button class="col-md-2 col-md-offset-8 btn btn-primary" onclick="onclickSubmitReplay()" type="submit">提交</button>
-        </div>
         <div>
-            <p class="col-md-12">评论</p>
-            <div style="background-color: #5e5e5e;height: 1px;" class="col-md-12"></div>
+            <div class="col-md-12" style="height: 250px;">
+                <label class="col-md-8 col-md-offset-2">发布评论</label>
+                <textarea id="comment" class="col-md-8 col-md-offset-2" style="height: 100px; 	border-collapse: separate;
+	            border: 1px solid rgb(204, 204, 204); " minlength="8"></textarea>
+                <button class="col-md-2 col-md-offset-8 btn btn-primary" onclick="onclickSubmitReplay()" type="submit">提交</button>
+                <h2 class="col-md-12">评论</h2>
+                <div style="background-color: #5e5e5e;height: 2px;" class="col-md-12"></div>
+            </div>
             <div id="commentList"></div>
+        </div>
+        <div style="background-color: #b92c28;height: 2px;" class="col-md-12"></div>
+        <div class="col-md-12">
+            <label id="commentPageLabel" class="col-md-4"></label>
+            <ul class="pagination col-md-4" style="margin: 0 0 0 33.33333333%;">
+                <li><a onclick="onclickFirst()">首页</a></li>
+                <li><a onclick="onclickPrv()">上一页</a></li>
+                <li><a onclick="onclickNext()">下一页</a></li>
+                <li><a onclick="onclickLast()">尾页</a></li>
+            </ul>
         </div>
     </div>
 </div>
@@ -60,7 +69,7 @@
     <div class="">
         <img src="/icons/timg.jpg" class="center-block img-circle" style="width: 200px;height: 200px;">
         <div class="caption">
-            <h1 class="text-center">Admin</h1>
+            <h1 class="text-center" id="rightAdmin"></h1>
             <p class="text-center">介绍</p>
         </div>
     </div>
